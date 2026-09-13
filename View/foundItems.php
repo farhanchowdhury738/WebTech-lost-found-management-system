@@ -31,7 +31,7 @@ if ($claimError)
     </div><button class="btn">Search</button>
 </form>
 <div class="grid"><?php if ($items && $items->num_rows):
-    while ($item = $items->fetch_assoc()): ?>
+                        while ($item = $items->fetch_assoc()): ?>
             <div class="card"><?php if ($item["image_path"]): ?><img class="item-img"
                         src="<?php echo htmlspecialchars($item["image_path"]); ?>"><?php else: ?>
                     <div class="item-img"></div><?php endif; ?>
@@ -41,16 +41,17 @@ if ($claimError)
                     <?php echo htmlspecialchars($item["location"]); ?><br>Date Found:
                     <?php echo htmlspecialchars($item["date_lost_found"]); ?>
                 </p><a href="itemDetails.php?id=<?php echo $item["id"]; ?>">View Details</a>
-                
-                <?php if (
-    ($_SESSION["isLoggedIn"] ?? false) &&
-    $item["status"] === "Open" &&
-    (int)$item["user_id"] !== (int)$_SESSION["loggedInUserId"]
-): ?> | <a
-    href="claimItem.php?id=<?php echo $item["id"]; ?>">Claim Item</a><?php endif; ?>
-                
 
-            </div><?php endwhile; else: ?>
+                <?php if (
+                                ($_SESSION["isLoggedIn"] ?? false) &&
+                                $item["status"] === "Open" &&
+                                (int)$item["user_id"] !== (int)$_SESSION["loggedInUserId"]
+                            ): ?> | <a
+                        href="claimItem.php?id=<?php echo $item["id"]; ?>">Claim Item</a><?php endif; ?>
+
+
+            </div><?php endwhile;
+                    else: ?>
         <p>No found items found.</p><?php endif; ?>
 </div>
 <?php include "footer.php"; ?>
