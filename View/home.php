@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<div class="#">
+<div>
     <h1>Khoja-Khuji</h1>
 
     <a class="btn" href="reportItem.php">Report an Item</a>
