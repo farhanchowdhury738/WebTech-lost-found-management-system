@@ -36,7 +36,7 @@ if ($claimError) {
 }
 
 if ($_SESSION["isLoggedIn"] ?? false) {
-?>
+    ?>
 
     <p>
         <a href="reportItem.php" class="btn">
@@ -44,7 +44,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
         </a>
     </p>
 
-<?php
+    <?php
 }
 ?>
 
@@ -66,10 +66,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                 </td>
 
                 <td>
-                    <input
-                        type="text"
-                        name="search"
-                        value="<?php echo htmlspecialchars($search); ?>">
+                    <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>">
                 </td>
 
             </tr>
@@ -93,22 +90,19 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 
                         while ($cat = $categories->fetch_assoc()) {
 
-                        ?>
+                            ?>
 
-                            <option
-                                value="<?php echo $cat["id"]; ?>"
-                                <?php
-                                if ($category == $cat["id"]) {
-                                    echo "selected";
-                                }
-                                ?>
-                            >
+                            <option value="<?php echo $cat["id"]; ?>" <?php
+                               if ($category == $cat["id"]) {
+                                   echo "selected";
+                               }
+                               ?>>
 
                                 <?php echo htmlspecialchars($cat["name"]); ?>
 
                             </option>
 
-                        <?php
+                            <?php
 
                         }
 
@@ -126,9 +120,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                 <td></td>
 
                 <td>
-                    <input
-                        type="submit"
-                        value="Search">
+                    <input type="submit" value="Search">
                 </td>
 
             </tr>
@@ -176,10 +168,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 
                         <?php if ($item["image_path"]): ?>
 
-                            <img
-                                src="<?php echo htmlspecialchars($item["image_path"]); ?>"
-                                width="80"
-                                height="60">
+                            <img src="<?php echo htmlspecialchars($item["image_path"]); ?>" width="80" height="60">
 
                         <?php else: ?>
 
@@ -239,11 +228,11 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                         if (
                             ($_SESSION["isLoggedIn"] ?? false) &&
                             $item["status"] === "Open" &&
-                            (int)$item["user_id"] !==
-                            (int)$_SESSION["loggedInUserId"]
+                            (int) $item["user_id"] !==
+                            (int) $_SESSION["loggedInUserId"]
                         ):
 
-                        ?>
+                            ?>
 
                             <br>
 

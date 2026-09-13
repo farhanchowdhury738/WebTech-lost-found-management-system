@@ -20,7 +20,8 @@ include "header.php";
     <div class="card"><b><?php echo htmlspecialchars($item["title"]); ?></b>
         <p class="meta">Found by: <?php echo htmlspecialchars($item["reporter_name"]); ?><br>Contact:
             <?php echo htmlspecialchars($item["contact_info"]); ?><br>Location:
-            <?php echo htmlspecialchars($item["location"]); ?></p>
+            <?php echo htmlspecialchars($item["location"]); ?>
+        </p>
     </div>
     <form action="../Controller/submitClaim.php" method="post" enctype="multipart/form-data"><input type="hidden"
             name="item_id" value="<?php echo $item["id"]; ?>">
