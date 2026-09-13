@@ -41,11 +41,8 @@ include "header.php";
 
     <fieldset class="login-box">
 
-        <legend>Welcome Back</legend>
+        <legend>Log In</legend>
 
-        <p class="login-text">
-            Sign in to continue to Khoja-Khuji
-        </p>
 
         <form action="../Controller/loginValidation.php" method="post">
 

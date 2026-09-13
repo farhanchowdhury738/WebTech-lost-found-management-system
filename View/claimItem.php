@@ -144,17 +144,11 @@ include "header.php";
 </fieldset>
 
 <?php
-foreach (
-    [
-        "claimNameError",
-        "claimEmailError",
-        "claimPhoneError",
-        "claimDescriptionError",
-        "claimProofError"
-    ] as $key
-) {
-    unset($_SESSION[$key]);
-}
+unset($_SESSION["claimNameError"]);
+unset($_SESSION["claimEmailError"]);
+unset($_SESSION["claimPhoneError"]);
+unset($_SESSION["claimDescriptionError"]);
+unset($_SESSION["claimProofError"]);
 
 include "footer.php";
 ?>
