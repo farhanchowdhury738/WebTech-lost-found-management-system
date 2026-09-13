@@ -1,57 +1,281 @@
+```php
 <?php
+
 session_start();
+
 include "../Model/DatabaseConnection.php";
+
 $database = new DatabaseConnection();
 $connection = $database->openConnection();
-$search = trim($_GET["search"] ?? "");
+
+$search = $_GET["search"] ?? "";
 $category = $_GET["category"] ?? "";
-$items = $database->getItems($connection, "Found", $search, $category);
+
+$items = $database->getItems(
+    $connection,
+    "Found",
+    $search,
+    $category
+);
+
 $categories = $database->getCategories($connection);
+
 $claimError = $_SESSION["claimError"] ?? "";
 unset($_SESSION["claimError"]);
+
 include "header.php";
-if ($claimError)
-    echo '<div class="fail">' . htmlspecialchars($claimError) . '</div>';
+
 ?>
-<div class="top-actions">
-    <h1>Found Items</h1><?php if ($_SESSION["isLoggedIn"] ?? false): ?><a class="btn" href="reportItem.php">+ Report
-            Found
-            Item</a><?php endif; ?>
-</div>
-<form class="card" method="get">
-    <div class="grid">
-        <div class="field"><label>Search</label><input type="text" name="search"
-                value="<?php echo htmlspecialchars($search); ?>" placeholder="Search found items"></div>
-        <div class="field"><label>Category</label><select name="category">
-                <option value="">All Categories</option><?php while ($cat = $categories->fetch_assoc()): ?>
-                    <option value="<?php echo $cat["id"]; ?>" <?php echo ($category == $cat["id"] ? 'selected' : ''); ?>>
-                        <?php echo htmlspecialchars($cat["name"]); ?>
-                    </option><?php endwhile; ?>
-            </select></div>
-    </div><button class="btn">Search</button>
-</form>
-<div class="grid"><?php if ($items && $items->num_rows):
-                        while ($item = $items->fetch_assoc()): ?>
-            <div class="card"><?php if ($item["image_path"]): ?><img class="item-img"
-                        src="<?php echo htmlspecialchars($item["image_path"]); ?>"><?php else: ?>
-                    <div class="item-img"></div><?php endif; ?>
-                <h3><?php echo htmlspecialchars($item["title"]); ?></h3><span
-                    class="badge"><?php echo htmlspecialchars($item["status"]); ?></span>
-                <p class="meta">Category: <?php echo htmlspecialchars($item["category_name"]); ?><br>Location:
-                    <?php echo htmlspecialchars($item["location"]); ?><br>Date Found:
-                    <?php echo htmlspecialchars($item["date_lost_found"]); ?>
-                </p><a href="itemDetails.php?id=<?php echo $item["id"]; ?>">View Details</a>
 
-                <?php if (
-                                ($_SESSION["isLoggedIn"] ?? false) &&
-                                $item["status"] === "Open" &&
-                                (int)$item["user_id"] !== (int)$_SESSION["loggedInUserId"]
-                            ): ?> | <a
-                        href="claimItem.php?id=<?php echo $item["id"]; ?>">Claim Item</a><?php endif; ?>
+<h1>Found Items</h1>
+
+<?php
+
+if ($claimError) {
+    echo '<p>' . htmlspecialchars($claimError) . '</p>';
+}
+
+if ($_SESSION["isLoggedIn"] ?? false) {
+?>
+
+    <p>
+        <a href="reportItem.php" class="btn">
+            Report Found Item
+        </a>
+    </p>
+
+<?php
+}
+?>
 
 
-            </div><?php endwhile;
-                    else: ?>
-        <p>No found items found.</p><?php endif; ?>
-</div>
+<!-- Search Found Items -->
+
+<fieldset>
+
+    <legend>Search Found Items</legend>
+
+    <form method="get">
+
+        <table>
+
+            <tr>
+
+                <td>
+                    <label>Search:</label>
+                </td>
+
+                <td>
+                    <input
+                        type="text"
+                        name="search"
+                        value="<?php echo htmlspecialchars($search); ?>">
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <label>Category:</label>
+                </td>
+
+                <td>
+
+                    <select name="category">
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        <?php
+
+                        while ($cat = $categories->fetch_assoc()) {
+
+                        ?>
+
+                            <option
+                                value="<?php echo $cat["id"]; ?>"
+                                <?php
+                                if ($category == $cat["id"]) {
+                                    echo "selected";
+                                }
+                                ?>
+                            >
+
+                                <?php echo htmlspecialchars($cat["name"]); ?>
+
+                            </option>
+
+                        <?php
+
+                        }
+
+                        ?>
+
+                    </select>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td></td>
+
+                <td>
+                    <input
+                        type="submit"
+                        value="Search">
+                </td>
+
+            </tr>
+
+        </table>
+
+    </form>
+
+</fieldset>
+
+
+<br>
+
+
+<!-- Found Items List -->
+
+<fieldset>
+
+    <legend>Found Items</legend>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Date Found</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+
+        <?php if ($items && $items->num_rows > 0): ?>
+
+            <?php while ($item = $items->fetch_assoc()): ?>
+
+                <tr>
+
+                    <!-- Image -->
+
+                    <td>
+
+                        <?php if ($item["image_path"]): ?>
+
+                            <img
+                                src="<?php echo htmlspecialchars($item["image_path"]); ?>"
+                                width="80"
+                                height="60">
+
+                        <?php else: ?>
+
+                            No Image
+
+                        <?php endif; ?>
+
+                    </td>
+
+
+                    <!-- Title -->
+
+                    <td>
+                        <?php echo htmlspecialchars($item["title"]); ?>
+                    </td>
+
+
+                    <!-- Category -->
+
+                    <td>
+                        <?php echo htmlspecialchars($item["category_name"]); ?>
+                    </td>
+
+
+                    <!-- Location -->
+
+                    <td>
+                        <?php echo htmlspecialchars($item["location"]); ?>
+                    </td>
+
+
+                    <!-- Date -->
+
+                    <td>
+                        <?php echo htmlspecialchars($item["date_lost_found"]); ?>
+                    </td>
+
+
+                    <!-- Status -->
+
+                    <td>
+                        <?php echo htmlspecialchars($item["status"]); ?>
+                    </td>
+
+
+                    <!-- Action -->
+
+                    <td>
+
+                        <a href="itemDetails.php?id=<?php echo $item["id"]; ?>">
+                            View Details
+                        </a>
+
+
+                        <?php
+
+                        if (
+                            ($_SESSION["isLoggedIn"] ?? false) &&
+                            $item["status"] === "Open" &&
+                            (int)$item["user_id"] !==
+                            (int)$_SESSION["loggedInUserId"]
+                        ):
+
+                        ?>
+
+                            <br>
+
+                            <a href="claimItem.php?id=<?php echo $item["id"]; ?>">
+                                Claim Item
+                            </a>
+
+                        <?php endif; ?>
+
+                    </td>
+
+                </tr>
+
+            <?php endwhile; ?>
+
+
+        <?php else: ?>
+
+            <tr>
+
+                <td colspan="7">
+                    No found items found.
+                </td>
+
+            </tr>
+
+        <?php endif; ?>
+
+    </table>
+
+</fieldset>
+
+
 <?php include "footer.php"; ?>
+```
