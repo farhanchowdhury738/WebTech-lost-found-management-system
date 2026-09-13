@@ -59,6 +59,7 @@ a:hover {
   background: #2563eb;
   color: #fff;
   padding: 11px 18px;
+  margin: 5px 0;
   border-radius: 6px;
   cursor: pointer;
 }

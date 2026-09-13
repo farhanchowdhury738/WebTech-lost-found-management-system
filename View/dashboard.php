@@ -8,19 +8,14 @@ include "header.php";
 ?>
 <h1>Welcome, <?php echo htmlspecialchars($_SESSION["loggedInUsername"]); ?>!</h1>
 
-<div class="grid">
-    
-</div>
 
-<div class="#">
-        <a class="btn" href="reportItem.php">Report Item</a>
-    </div>
-    <div class="#">
-        <a class="btn" href="myItems.php">View My Items</a>
-    </div>
-    <div class="#">
-        <a class="btn" href="myClaims.php">View My Claims</a>
-    </div>
+
+
+<a class="btn" href="reportItem.php">Report Item</a>
+
+    <a class="btn" href="myItems.php">View My Items</a>
+
+    <a class="btn" href="myClaims.php">View My Claims</a>
 
 
 <?php include "footer.php"; ?>
