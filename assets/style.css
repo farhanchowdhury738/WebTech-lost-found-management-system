@@ -198,3 +198,113 @@ a:hover {
   gap: 25px;
 }
 
+/* Login and Registration */
+
+.login-container,
+.register-container {
+    width: 550px;
+    margin: 50px auto;
+}
+
+.login-box,
+.register-box {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 25px 35px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-box legend,
+.register-box legend {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.login-text,
+.register-text {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Form table */
+
+.login-table,
+.register-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.login-table td,
+.register-table td {
+    padding: 9px;
+    vertical-align: top;
+}
+
+.login-table td:first-child,
+.register-table td:first-child {
+    width: 35%;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Input fields */
+
+.login-table input[type="email"],
+.login-table input[type="password"],
+.register-table input[type="text"],
+.register-table input[type="email"],
+.register-table input[type="password"] {
+    width: 95%;
+    padding: 9px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+
+.login-button {
+    padding: 9px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Error message */
+
+.error {
+    display: block;
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Optional text */
+
+.login-table small,
+.register-table small {
+    color: #777;
+    font-weight: normal;
+}
+
+/* Success and failure messages */
+
+.success {
+    background: #e7f6e7;
+    border: 1px solid #8bc48b;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.fail {
+    background: #fde8e8;
+    border: 1px solid #e09a9a;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
