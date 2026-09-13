@@ -18,7 +18,8 @@ $hasError = false;
 if ($type !== "Lost" && $type !== "Found") {
     $_SESSION["reportTypeError"] = "Please select Lost or Found";
     $hasError = true;
-} else unset($_SESSION["reportTypeError"]);
+} else
+    unset($_SESSION["reportTypeError"]);
 
 if (!$title) {
     $_SESSION["reportTitleError"] = "Item name is required";
@@ -26,22 +27,26 @@ if (!$title) {
 } elseif (strlen($title) < 2) {
     $_SESSION["reportTitleError"] = "Item name is too short";
     $hasError = true;
-} else unset($_SESSION["reportTitleError"]);
+} else
+    unset($_SESSION["reportTitleError"]);
 
 if (!$category_id || !is_numeric($category_id)) {
     $_SESSION["reportCategoryError"] = "Category is required";
     $hasError = true;
-} else unset($_SESSION["reportCategoryError"]);
+} else
+    unset($_SESSION["reportCategoryError"]);
 
 if (!$location) {
     $_SESSION["reportLocationError"] = "Location is required";
     $hasError = true;
-} else unset($_SESSION["reportLocationError"]);
+} else
+    unset($_SESSION["reportLocationError"]);
 
 if (!$date_lost_found) {
     $_SESSION["reportDateError"] = "Date is required";
     $hasError = true;
-} else unset($_SESSION["reportDateError"]);
+} else
+    unset($_SESSION["reportDateError"]);
 
 if (!$description) {
     $_SESSION["reportDescriptionError"] = "Description is required";
@@ -49,12 +54,14 @@ if (!$description) {
 } elseif (strlen($description) < 10) {
     $_SESSION["reportDescriptionError"] = "Description must be at least 10 characters";
     $hasError = true;
-} else unset($_SESSION["reportDescriptionError"]);
+} else
+    unset($_SESSION["reportDescriptionError"]);
 
 if (!$contact_info) {
     $_SESSION["reportContactError"] = "Contact information is required";
     $hasError = true;
-} else unset($_SESSION["reportContactError"]);
+} else
+    unset($_SESSION["reportContactError"]);
 
 $filePath = "";
 if (isset($_FILES["image"]) && $_FILES["image"]["error"] !== UPLOAD_ERR_NO_FILE) {
@@ -63,7 +70,8 @@ if (isset($_FILES["image"]) && $_FILES["image"]["error"] !== UPLOAD_ERR_NO_FILE)
         $_SESSION["reportImageError"] = substr($filePath, 7);
         $hasError = true;
         $filePath = "";
-    } else unset($_SESSION["reportImageError"]);
+    } else
+        unset($_SESSION["reportImageError"]);
 }
 
 if ($hasError) {

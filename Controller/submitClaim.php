@@ -29,7 +29,7 @@ if (!$item || $item["type"] !== "Found") {
     redirect("../View/foundItems.php");
 }
 
-if ((int)$item["user_id"] === (int)$_SESSION["loggedInUserId"]) {
+if ((int) $item["user_id"] === (int) $_SESSION["loggedInUserId"]) {
     $_SESSION["claimError"] = "You cannot claim your own found report";
     redirect("../View/foundItems.php");
 }
@@ -37,7 +37,8 @@ if ((int)$item["user_id"] === (int)$_SESSION["loggedInUserId"]) {
 if (!$name) {
     $_SESSION["claimNameError"] = "Name is required";
     $hasError = true;
-} else unset($_SESSION["claimNameError"]);
+} else
+    unset($_SESSION["claimNameError"]);
 
 if (!$email) {
     $_SESSION["claimEmailError"] = "Email is required";
@@ -45,7 +46,8 @@ if (!$email) {
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION["claimEmailError"] = "Enter a valid email";
     $hasError = true;
-} else unset($_SESSION["claimEmailError"]);
+} else
+    unset($_SESSION["claimEmailError"]);
 
 if (!$phone) {
     $_SESSION["claimPhoneError"] = "Phone number is required";
@@ -53,7 +55,8 @@ if (!$phone) {
 } elseif (!preg_match('/^[0-9+ -]{7,20}$/', $phone)) {
     $_SESSION["claimPhoneError"] = "Enter a valid phone number";
     $hasError = true;
-} else unset($_SESSION["claimPhoneError"]);
+} else
+    unset($_SESSION["claimPhoneError"]);
 
 if (!$description) {
     $_SESSION["claimDescriptionError"] = "Describe the item to prove ownership";
@@ -61,7 +64,8 @@ if (!$description) {
 } elseif (strlen($description) < 10) {
     $_SESSION["claimDescriptionError"] = "Description must be at least 10 characters";
     $hasError = true;
-} else unset($_SESSION["claimDescriptionError"]);
+} else
+    unset($_SESSION["claimDescriptionError"]);
 
 $proofPath = "";
 if (isset($_FILES["proof"]) && $_FILES["proof"]["error"] !== UPLOAD_ERR_NO_FILE) {
@@ -70,7 +74,8 @@ if (isset($_FILES["proof"]) && $_FILES["proof"]["error"] !== UPLOAD_ERR_NO_FILE)
         $_SESSION["claimProofError"] = substr($proofPath, 7);
         $hasError = true;
         $proofPath = "";
-    } else unset($_SESSION["claimProofError"]);
+    } else
+        unset($_SESSION["claimProofError"]);
 }
 
 if ($hasError) {

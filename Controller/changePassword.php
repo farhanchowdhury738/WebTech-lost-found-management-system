@@ -50,5 +50,3 @@ if ($database->changePassword($connection, $_SESSION["loggedInUserId"], $new_pas
 }
 redirect("../View/profile.php");
 ?>
-
-
