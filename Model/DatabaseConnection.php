@@ -5,7 +5,7 @@ class DatabaseConnection
     {
         $db_host = "localhost";
         $db_user = "root";
-        $db_password = ""; // XAMPP default. Change if your MySQL has a password.
+        $db_password = ""; 
         $db_name = "khoja_khuji";
 
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
@@ -18,27 +18,18 @@ class DatabaseConnection
 
     function signup($connection, $name, $email, $password, $phone, $role = "user")
     {
-        $name = $connection->real_escape_string($name);
-        $email = $connection->real_escape_string($email);
-        $password = $connection->real_escape_string($password);
-        $phone = $connection->real_escape_string($phone);
-        $role = $connection->real_escape_string($role);
-
         $sql = "INSERT INTO users (name, email, password_hash, phone, role) VALUES ('" . $name . "', '" . $email . "', '" . $password . "', '" . $phone . "', '" . $role . "')";
         return $connection->query($sql);
     }
 
     function signin($connection, $email, $password)
     {
-        $email = $connection->real_escape_string($email);
-        $password = $connection->real_escape_string($password);
         $sql = "SELECT * FROM users WHERE email='" . $email . "' AND password_hash='" . $password . "' AND status='active'";
         return $connection->query($sql);
     }
 
     function emailExists($connection, $email)
     {
-        $email = $connection->real_escape_string($email);
         $sql = "SELECT id FROM users WHERE email='" . $email . "'";
         $result = $connection->query($sql);
         return $result && $result->num_rows > 0;
@@ -51,16 +42,12 @@ class DatabaseConnection
 
     function addCategory($connection, $name, $description)
     {
-        $name = $connection->real_escape_string($name);
-        $description = $connection->real_escape_string($description);
         return $connection->query("INSERT INTO categories (name, description) VALUES ('" . $name . "', '" . $description . "')");
     }
 
     function updateCategory($connection, $id, $name, $description)
     {
         $id = (int)$id;
-        $name = $connection->real_escape_string($name);
-        $description = $connection->real_escape_string($description);
         return $connection->query("UPDATE categories SET name='" . $name . "', description='" . $description . "' WHERE id=" . $id);
     }
 
@@ -74,14 +61,6 @@ class DatabaseConnection
     {
         $user_id = (int)$user_id;
         $category_id = (int)$category_id;
-        $title = $connection->real_escape_string($title);
-        $description = $connection->real_escape_string($description);
-        $type = $connection->real_escape_string($type);
-        $location = $connection->real_escape_string($location);
-        $date_lost_found = $connection->real_escape_string($date_lost_found);
-        $image_path = $connection->real_escape_string($image_path);
-        $contact_info = $connection->real_escape_string($contact_info);
-
         $sql = "INSERT INTO items (user_id, category_id, title, description, type, location, date_lost_found, image_path, contact_info, status) VALUES (" . $user_id . ", " . $category_id . ", '" . $title . "', '" . $description . "', '" . $type . "', '" . $location . "', '" . $date_lost_found . "', '" . $image_path . "', '" . $contact_info . "', 'Open')";
         return $connection->query($sql);
     }
@@ -90,11 +69,9 @@ class DatabaseConnection
     {
         $conditions = [];
         if ($type !== "") {
-            $type = $connection->real_escape_string($type);
             $conditions[] = "i.type='" . $type . "'";
         }
         if ($search !== "") {
-            $search = $connection->real_escape_string($search);
             $conditions[] = "(i.title LIKE '%" . $search . "%' OR i.description LIKE '%" . $search . "%' OR i.location LIKE '%" . $search . "%')";
         }
         if ($category_id !== "") {
@@ -126,15 +103,6 @@ class DatabaseConnection
     {
         $id = (int)$id;
         $category_id = (int)$category_id;
-        $title = $connection->real_escape_string($title);
-        $description = $connection->real_escape_string($description);
-        $type = $connection->real_escape_string($type);
-        $location = $connection->real_escape_string($location);
-        $date_lost_found = $connection->real_escape_string($date_lost_found);
-        $image_path = $connection->real_escape_string($image_path);
-        $contact_info = $connection->real_escape_string($contact_info);
-        $status = $connection->real_escape_string($status);
-
         $sql = "UPDATE items SET category_id=" . $category_id . ", title='" . $title . "', description='" . $description . "', type='" . $type . "', location='" . $location . "', date_lost_found='" . $date_lost_found . "', image_path='" . $image_path . "', contact_info='" . $contact_info . "', status='" . $status . "' WHERE id=" . $id;
         return $connection->query($sql);
     }
@@ -148,7 +116,6 @@ class DatabaseConnection
     function updateItemStatus($connection, $item_id, $status)
     {
         $item_id = (int)$item_id;
-        $status = $connection->real_escape_string($status);
         return $connection->query("UPDATE items SET status='" . $status . "' WHERE id=" . $item_id);
     }
 
@@ -156,13 +123,6 @@ class DatabaseConnection
     {
         $item_id = (int)$item_id;
         $user_id = (int)$user_id;
-        $name = $connection->real_escape_string($name);
-        $email = $connection->real_escape_string($email);
-        $phone = $connection->real_escape_string($phone);
-        $description = $connection->real_escape_string($description);
-        $proof_path = $connection->real_escape_string($proof_path);
-        $additional_info = $connection->real_escape_string($additional_info);
-
         $sql = "INSERT INTO claims (item_id, user_id, claimant_name, claimant_email, claimant_phone, description, proof_path, additional_info, status) VALUES (" . $item_id . ", " . $user_id . ", '" . $name . "', '" . $email . "', '" . $phone . "', '" . $description . "', '" . $proof_path . "', '" . $additional_info . "', 'Pending')";
         return $connection->query($sql);
     }
@@ -181,19 +141,14 @@ class DatabaseConnection
     function updateClaimStatus($connection, $claim_id, $status)
     {
         $claim_id = (int)$claim_id;
-        $status = $connection->real_escape_string($status);
         return $connection->query("UPDATE claims SET status='" . $status . "', returned_at=" . ($status === "Returned" ? "NOW()" : "NULL") . " WHERE id=" . $claim_id);
     }
 
     function updateProfile($connection, $id, $name, $email, $phone, $photo_path = "")
     {
         $id = (int)$id;
-        $name = $connection->real_escape_string($name);
-        $email = $connection->real_escape_string($email);
-        $phone = $connection->real_escape_string($phone);
         $sql = "UPDATE users SET name='" . $name . "', email='" . $email . "', phone='" . $phone . "'";
         if ($photo_path !== "") {
-            $photo_path = $connection->real_escape_string($photo_path);
             $sql .= ", profile_photo='" . $photo_path . "'";
         }
         $sql .= " WHERE id=" . $id;
@@ -203,7 +158,6 @@ class DatabaseConnection
     function changePassword($connection, $id, $password)
     {
         $id = (int)$id;
-        $password = $connection->real_escape_string($password);
         return $connection->query("UPDATE users SET password_hash='" . $password . "' WHERE id=" . $id);
     }
 
@@ -222,23 +176,12 @@ class DatabaseConnection
 
     function addUser($connection, $name, $email, $password, $phone, $role = "user", $status = "active")
     {
-        $name = $connection->real_escape_string($name);
-        $email = $connection->real_escape_string($email);
-        $password = $connection->real_escape_string($password);
-        $phone = $connection->real_escape_string($phone);
-        $role = $connection->real_escape_string($role);
-        $status = $connection->real_escape_string($status);
         return $connection->query("INSERT INTO users (name, email, password_hash, phone, role, status) VALUES ('" . $name . "', '" . $email . "', '" . $password . "', '" . $phone . "', '" . $role . "', '" . $status . "')");
     }
 
     function updateUser($connection, $id, $name, $email, $phone, $role, $status)
     {
         $id = (int)$id;
-        $name = $connection->real_escape_string($name);
-        $email = $connection->real_escape_string($email);
-        $phone = $connection->real_escape_string($phone);
-        $role = $connection->real_escape_string($role);
-        $status = $connection->real_escape_string($status);
         return $connection->query("UPDATE users SET name='" . $name . "', email='" . $email . "', phone='" . $phone . "', role='" . $role . "', status='" . $status . "' WHERE id=" . $id);
     }
 
@@ -251,7 +194,6 @@ class DatabaseConnection
     function updateUserStatus($connection, $id, $status)
     {
         $id = (int)$id;
-        $status = $connection->real_escape_string($status);
         return $connection->query("UPDATE users SET status='" . $status . "' WHERE id=" . $id);
     }
 }
