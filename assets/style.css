@@ -56,7 +56,7 @@ a:hover {
 .btn {
   display: inline-block;
   border: 0;
-  background: #2563eb;
+  background: gray;
   color: #fff;
   padding: 11px 18px;
   margin: 5px 0;
