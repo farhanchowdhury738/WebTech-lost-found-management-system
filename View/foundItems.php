@@ -14,7 +14,8 @@ if ($claimError)
     echo '<div class="fail">' . htmlspecialchars($claimError) . '</div>';
 ?>
 <div class="top-actions">
-    <h1>Found Items</h1><?php if ($_SESSION["isLoggedIn"] ?? false): ?><a class="btn" href="reportItem.php">+ Report Found
+    <h1>Found Items</h1><?php if ($_SESSION["isLoggedIn"] ?? false): ?><a class="btn" href="reportItem.php">+ Report
+            Found
             Item</a><?php endif; ?>
 </div>
 <form class="card" method="get">
@@ -24,7 +25,8 @@ if ($claimError)
         <div class="field"><label>Category</label><select name="category">
                 <option value="">All Categories</option><?php while ($cat = $categories->fetch_assoc()): ?>
                     <option value="<?php echo $cat["id"]; ?>" <?php echo ($category == $cat["id"] ? 'selected' : ''); ?>>
-                        <?php echo htmlspecialchars($cat["name"]); ?></option><?php endwhile; ?>
+                        <?php echo htmlspecialchars($cat["name"]); ?>
+                    </option><?php endwhile; ?>
             </select></div>
     </div><button class="btn">Search</button>
 </form>
@@ -37,10 +39,17 @@ if ($claimError)
                     class="badge"><?php echo htmlspecialchars($item["status"]); ?></span>
                 <p class="meta">Category: <?php echo htmlspecialchars($item["category_name"]); ?><br>Location:
                     <?php echo htmlspecialchars($item["location"]); ?><br>Date Found:
-                    <?php echo htmlspecialchars($item["date_lost_found"]); ?></p><a
-                    href="itemDetails.php?id=<?php echo $item["id"]; ?>">View Details</a>
-                <?php if (($_SESSION["isLoggedIn"] ?? false) && $item["status"] === "Open"): ?> | <a
-                        href="claimItem.php?id=<?php echo $item["id"]; ?>">Claim Item</a><?php endif; ?>
+                    <?php echo htmlspecialchars($item["date_lost_found"]); ?>
+                </p><a href="itemDetails.php?id=<?php echo $item["id"]; ?>">View Details</a>
+                
+                <?php if (
+    ($_SESSION["isLoggedIn"] ?? false) &&
+    $item["status"] === "Open" &&
+    (int)$item["user_id"] !== (int)$_SESSION["loggedInUserId"]
+): ?> | <a
+    href="claimItem.php?id=<?php echo $item["id"]; ?>">Claim Item</a><?php endif; ?>
+                
+
             </div><?php endwhile; else: ?>
         <p>No found items found.</p><?php endif; ?>
 </div>

@@ -29,6 +29,11 @@ if (!$item || $item["type"] !== "Found") {
     redirect("../View/foundItems.php");
 }
 
+if ((int)$item["user_id"] === (int)$_SESSION["loggedInUserId"]) {
+    $_SESSION["claimError"] = "You cannot claim your own found report";
+    redirect("../View/foundItems.php");
+}
+
 if (!$name) {
     $_SESSION["claimNameError"] = "Name is required";
     $hasError = true;
