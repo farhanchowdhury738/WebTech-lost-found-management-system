@@ -169,7 +169,28 @@ class DatabaseConnection
 
 
     // AdminUser functions (Aryan)
-    
+    function getUsers($connection)
+    {
+        return $connection->query("SELECT id, name, email, phone, role, status, created_at FROM users ORDER BY created_at DESC");
+    }
+
+
+    function addUser($connection, $name, $email, $password, $phone, $role = "user", $status = "active")
+    {
+        return $connection->query("INSERT INTO users (name, email, password_hash, phone, role, status) VALUES ('" . $name . "', '" . $email . "', '" . $password . "', '" . $phone . "', '" . $role . "', '" . $status . "')");
+    }
+
+    function updateUser($connection, $id, $name, $email, $phone, $role, $status)
+    {
+        $id = (int)$id;
+        return $connection->query("UPDATE users SET name='" . $name . "', email='" . $email . "', phone='" . $phone . "', role='" . $role . "', status='" . $status . "' WHERE id=" . $id);
+    }
+
+    function deleteUser($connection, $id)
+    {
+        $id = (int)$id;
+        return $connection->query("DELETE FROM users WHERE id=" . $id);
+    }
     //---------------
 
     function updateUserStatus($connection, $id, $status)
