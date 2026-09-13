@@ -1,6 +1,63 @@
 <?php
-session_start(); if(!($_SESSION["isLoggedIn"]??false)){header("Location: login.php");exit();} include "../Model/DatabaseConnection.php"; $db=new DatabaseConnection();$con=$db->openConnection();$user=$db->getUserById($con,$_SESSION["loggedInUserId"]); include "header.php";
-$err=function($k){return htmlspecialchars($_SESSION[$k]??"");};
+session_start();
+if (!($_SESSION["isLoggedIn"] ?? false)) {
+    header("Location: login.php");
+    exit();
+}
+include "../Model/DatabaseConnection.php";
+$db = new DatabaseConnection();
+$con = $db->openConnection();
+$user = $db->getUserById($con, $_SESSION["loggedInUserId"]);
+include "header.php";
+$err = function ($k) {
+    return htmlspecialchars($_SESSION[$k] ?? ""); };
 ?>
-<h1>Profile Settings</h1><div class="two-col"><div class="card"><div class="stat"><?php echo htmlspecialchars($user["name"]); ?></div><p><?php echo htmlspecialchars($user["email"]); ?></p><p>Role: <?php echo htmlspecialchars($user["role"]); ?></p><a class="btn" href="myItems.php">Reported Items</a><br><br><a class="btn" href="myClaims.php">My Claims</a></div><div><div class="form-card" style="margin-top:0"><h3>Update Profile</h3><form action="../Controller/updateProfile.php" method="post" enctype="multipart/form-data"><div class="field"><label>Full Name</label><input type="text" name="name" value="<?php echo htmlspecialchars($user["name"]); ?>"><div class="error"><?php echo $err("profileNameError"); ?></div></div><div class="field"><label>Email</label><input type="email" name="email" value="<?php echo htmlspecialchars($user["email"]); ?>"><div class="error"><?php echo $err("profileEmailError"); ?></div></div><div class="field"><label>Phone</label><input type="text" name="phone" value="<?php echo htmlspecialchars($user["phone"]??""); ?>"><div class="error"><?php echo $err("profilePhoneError"); ?></div></div><div class="field"><label>Profile Photo</label><input type="file" name="profile_photo" accept=".jpg,.jpeg,.png,.webp"><div class="error"><?php echo $err("profilePhotoError"); ?></div></div><button class="btn">Save Changes</button></form></div><div class="form-card"><h3>Change Password</h3><form action="../Controller/changePassword.php" method="post"><div class="field"><label>Current Password</label><input type="password" name="current_password"><div class="error"><?php echo $err("currentPasswordError"); ?></div></div><div class="field"><label>New Password</label><input type="password" name="new_password"><div class="error"><?php echo $err("newPasswordError"); ?></div></div><div class="field"><label>Confirm New Password</label><input type="password" name="confirm_password"><div class="error"><?php echo $err("confirmNewPasswordError"); ?></div></div><button class="btn">Change Password</button></form></div></div></div>
-<?php foreach(["profileNameError","profileEmailError","profilePhoneError","profilePhotoError","profileError","currentPasswordError","newPasswordError","confirmNewPasswordError"] as $k) unset($_SESSION[$k]); include "footer.php"; ?>
+<h1>Profile Settings</h1>
+<div class="two-col">
+    <div class="card">
+        <div class="stat"><?php echo htmlspecialchars($user["name"]); ?></div>
+        <p><?php echo htmlspecialchars($user["email"]); ?></p>
+        <p>Role: <?php echo htmlspecialchars($user["role"]); ?></p><a class="btn" href="myItems.php">Reported
+            Items</a><br><br><a class="btn" href="myClaims.php">My Claims</a>
+    </div>
+    <div>
+        <div class="form-card" style="margin-top:0">
+            <h3>Update Profile</h3>
+            <form action="../Controller/updateProfile.php" method="post" enctype="multipart/form-data">
+                <div class="field"><label>Full Name</label><input type="text" name="name"
+                        value="<?php echo htmlspecialchars($user["name"]); ?>">
+                    <div class="error"><?php echo $err("profileNameError"); ?></div>
+                </div>
+                <div class="field"><label>Email</label><input type="email" name="email"
+                        value="<?php echo htmlspecialchars($user["email"]); ?>">
+                    <div class="error"><?php echo $err("profileEmailError"); ?></div>
+                </div>
+                <div class="field"><label>Phone</label><input type="text" name="phone"
+                        value="<?php echo htmlspecialchars($user["phone"] ?? ""); ?>">
+                    <div class="error"><?php echo $err("profilePhoneError"); ?></div>
+                </div>
+                <div class="field"><label>Profile Photo</label><input type="file" name="profile_photo"
+                        accept=".jpg,.jpeg,.png,.webp">
+                    <div class="error"><?php echo $err("profilePhotoError"); ?></div>
+                </div><button class="btn">Save Changes</button>
+            </form>
+        </div>
+        <div class="form-card">
+            <h3>Change Password</h3>
+            <form action="../Controller/changePassword.php" method="post">
+                <div class="field"><label>Current Password</label><input type="password" name="current_password">
+                    <div class="error"><?php echo $err("currentPasswordError"); ?></div>
+                </div>
+                <div class="field"><label>New Password</label><input type="password" name="new_password">
+                    <div class="error"><?php echo $err("newPasswordError"); ?></div>
+                </div>
+                <div class="field"><label>Confirm New Password</label><input type="password" name="confirm_password">
+                    <div class="error"><?php echo $err("confirmNewPasswordError"); ?></div>
+                </div><button class="btn">Change Password</button>
+            </form>
+        </div>
+    </div>
+</div>
+<?php foreach (["profileNameError", "profileEmailError", "profilePhoneError", "profilePhotoError", "profileError", "currentPasswordError", "newPasswordError", "confirmNewPasswordError"] as $k)
+    unset($_SESSION[$k]);
+include "footer.php"; ?>
