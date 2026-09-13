@@ -93,6 +93,12 @@ a:hover {
   max-width: 650px;
   margin: 30px auto;
 }
+
+.form-card legend {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0 10px;
+}
 .field {
   margin-bottom: 16px;
 }

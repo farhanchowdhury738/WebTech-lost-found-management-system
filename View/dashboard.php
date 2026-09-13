@@ -13,9 +13,9 @@ include "header.php";
 
 <a class="btn" href="reportItem.php">Report Item</a>
 
-    <a class="btn" href="myItems.php">View My Items</a>
+<a class="btn" href="myItems.php">View My Items</a>
 
-    <a class="btn" href="myClaims.php">View My Claims</a>
+<a class="btn" href="myClaims.php">View My Claims</a>
 
 
 <?php include "footer.php"; ?>
