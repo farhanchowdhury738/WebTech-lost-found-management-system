@@ -19,7 +19,8 @@ if (!$current_password) {
 } elseif ($user["password_hash"] !== $current_password) {
     $_SESSION["currentPasswordError"] = "Current password is incorrect";
     $hasError = true;
-} else unset($_SESSION["currentPasswordError"]);
+} else
+    unset($_SESSION["currentPasswordError"]);
 
 if (!$new_password) {
     $_SESSION["newPasswordError"] = "New password is required";
@@ -27,7 +28,8 @@ if (!$new_password) {
 } elseif (strlen($new_password) < 6) {
     $_SESSION["newPasswordError"] = "New password must be at least 6 characters";
     $hasError = true;
-} else unset($_SESSION["newPasswordError"]);
+} else
+    unset($_SESSION["newPasswordError"]);
 
 if (!$confirm_password) {
     $_SESSION["confirmNewPasswordError"] = "Please confirm the new password";
@@ -35,9 +37,11 @@ if (!$confirm_password) {
 } elseif ($new_password !== $confirm_password) {
     $_SESSION["confirmNewPasswordError"] = "Passwords do not match";
     $hasError = true;
-} else unset($_SESSION["confirmNewPasswordError"]);
+} else
+    unset($_SESSION["confirmNewPasswordError"]);
 
-if ($hasError) redirect("../View/profile.php");
+if ($hasError)
+    redirect("../View/profile.php");
 
 if ($database->changePassword($connection, $_SESSION["loggedInUserId"], $new_password)) {
     $_SESSION["successMessage"] = "Password changed successfully";
@@ -48,5 +52,3 @@ redirect("../View/profile.php");
 ?>
 
 
-
-/* comment */

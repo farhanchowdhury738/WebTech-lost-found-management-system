@@ -27,8 +27,7 @@ include "header.php";
 <div class="profile-page">
 
     <div class="profile-title">
-        <h1>Profile Settings</h1>
-        <p>Update your name and password</p>
+        <h1>Profile Update</h1>
     </div>
 
 
@@ -44,11 +43,7 @@ include "header.php";
 
                 <label>Full Name</label>
 
-                <input
-                    type="text"
-                    name="name"
-                    value="<?php echo htmlspecialchars($user["name"]); ?>"
-                >
+                <input type="text" name="name" value="<?php echo htmlspecialchars($user["name"]); ?>">
 
                 <div class="error">
                     <?php echo $err("profileNameError"); ?>
@@ -77,10 +72,7 @@ include "header.php";
 
                 <label>Current Password</label>
 
-                <input
-                    type="password"
-                    name="current_password"
-                >
+                <input type="password" name="current_password">
 
                 <div class="error">
                     <?php echo $err("currentPasswordError"); ?>
@@ -93,10 +85,7 @@ include "header.php";
 
                 <label>New Password</label>
 
-                <input
-                    type="password"
-                    name="new_password"
-                >
+                <input type="password" name="new_password">
 
                 <div class="error">
                     <?php echo $err("newPasswordError"); ?>
@@ -109,10 +98,7 @@ include "header.php";
 
                 <label>Confirm New Password</label>
 
-                <input
-                    type="password"
-                    name="confirm_password"
-                >
+                <input type="password" name="confirm_password">
 
                 <div class="error">
                     <?php echo $err("confirmNewPasswordError"); ?>
@@ -134,15 +120,11 @@ include "header.php";
 
 <?php
 
-foreach ([
-    "profileNameError",
-    "profileError",
-    "currentPasswordError",
-    "newPasswordError",
-    "confirmNewPasswordError"
-] as $k) {
-    unset($_SESSION[$k]);
-}
+unset($_SESSION["profileNameError"]);
+unset($_SESSION["profileError"]);
+unset($_SESSION["currentPasswordError"]);
+unset($_SESSION["newPasswordError"]);
+unset($_SESSION["confirmNewPasswordError"]);
 
 include "footer.php";
 
