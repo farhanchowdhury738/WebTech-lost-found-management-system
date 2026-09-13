@@ -19,9 +19,13 @@ $isAdmin = ($_SESSION["role"] ?? "user") === "admin";
         <a href="lostItems.php">Lost Items</a>
         <a href="foundItems.php">Found Items</a>
         <?php if ($isLoggedIn): ?>
+            <?php if ($isAdmin): ?>
+                <a href="adminDashboard.php">Dashboard</a>
+            <?php else: ?>
+                <a href="dashboard.php">Dashboard</a>
+            <?php endif; ?>
             <a href="reportItem.php">Report Item</a>
             <a href="profile.php">Profile</a>
-            <?php if ($isAdmin): ?><a href="adminDashboard.php">Admin</a><?php endif; ?>
             <a href="../Controller/logout.php">Logout</a>
         <?php else: ?>
             <a href="login.php">Log in</a>

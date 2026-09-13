@@ -144,16 +144,15 @@ class DatabaseConnection
         return $connection->query("UPDATE claims SET status='" . $status . "', returned_at=" . ($status === "Returned" ? "NOW()" : "NULL") . " WHERE id=" . $claim_id);
     }
 
-    function updateProfile($connection, $id, $name, $email, $phone, $photo_path = "")
-    {
-        $id = (int)$id;
-        $sql = "UPDATE users SET name='" . $name . "', email='" . $email . "', phone='" . $phone . "'";
-        if ($photo_path !== "") {
-            $sql .= ", profile_photo='" . $photo_path . "'";
-        }
-        $sql .= " WHERE id=" . $id;
-        return $connection->query($sql);
-    }
+    
+    function updateProfile($connection, $id, $name)
+{
+    $id = (int)$id;
+
+    $sql = "UPDATE users SET name='" . $name . "' WHERE id=" . $id;
+
+    return $connection->query($sql);
+}
 
     function changePassword($connection, $id, $password)
     {
