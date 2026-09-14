@@ -7,8 +7,8 @@ include "../Model/DatabaseConnection.php";
 $database = new DatabaseConnection();
 $connection = $database->openConnection();
 
-$search = $_GET["search"] ?? "";
-$category = $_GET["category"] ?? "";
+$search = $_POST["search"] ?? "";
+$category = $_POST["category"] ?? "";
 
 $items = $database->getItems(
     $connection,
@@ -35,7 +35,7 @@ if ($claimError) {
 }
 
 if ($_SESSION["isLoggedIn"] ?? false) {
-    ?>
+?>
 
     <p>
         <a href="reportItem.php" class="btn">
@@ -43,7 +43,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
         </a>
     </p>
 
-    <?php
+<?php
 }
 ?>
 
@@ -54,7 +54,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 
     <legend>Search Found Items</legend>
 
-    <form method="get">
+    <form method="post">
 
         <table>
 
@@ -89,19 +89,19 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 
                         while ($cat = $categories->fetch_assoc()) {
 
-                            ?>
+                        ?>
 
                             <option value="<?php echo $cat["id"]; ?>" <?php
-                               if ($category == $cat["id"]) {
-                                   echo "selected";
-                               }
-                               ?>>
+                                                                        if ($category == $cat["id"]) {
+                                                                            echo "selected";
+                                                                        }
+                                                                        ?>>
 
                                 <?php echo htmlspecialchars($cat["name"]); ?>
 
                             </option>
 
-                            <?php
+                        <?php
 
                         }
 
@@ -231,7 +231,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                             (int) $_SESSION["loggedInUserId"]
                         ):
 
-                            ?>
+                        ?>
 
                             <br>
 
@@ -266,4 +266,3 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 
 
 <?php include "footer.php"; ?>
-```
