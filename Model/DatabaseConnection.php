@@ -145,7 +145,7 @@ class DatabaseConnection
         return $connection->query("UPDATE claims SET status='" . $status . "', returned_at=" . ($status === "Returned" ? "NOW()" : "NULL") . " WHERE id=" . $claim_id);
     }
 
-
+    //UPDATE PROFILE
     function updateProfile($connection, $id, $name)
     {
         $id = (int) $id;
