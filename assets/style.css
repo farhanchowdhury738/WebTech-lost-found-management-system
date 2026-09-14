@@ -1,19 +1,23 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f7f9fc;
   color: #1f2937;
 }
+
 a {
   color: #2563eb;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
+
 .nav {
   background: #fff;
   border-bottom: 1px solid #e5e7eb;
@@ -22,37 +26,44 @@ a:hover {
   justify-content: space-between;
   align-items: center;
 }
+
 .brand {
   font-size: 22px;
   font-weight: 700;
   color: #111827;
 }
+
 .navlinks {
   display: flex;
   gap: 18px;
   align-items: center;
 }
+
 .container {
   width: 88%;
   max-width: 1100px;
   margin: 35px auto;
 }
+
 .hero {
   background: #fff;
   padding: 55px 30px;
   text-align: center;
   border: 1px solid #e5e7eb;
 }
+
 .hero h1 {
   font-size: 42px;
   margin: 10px;
 }
+
 .hero p {
   max-width: 680px;
   margin: 15px auto 25px;
   line-height: 1.6;
   color: #6b7280;
 }
+
 .btn {
   display: inline-block;
   border: 0;
@@ -63,29 +74,35 @@ a:hover {
   border-radius: 6px;
   cursor: pointer;
 }
+
 .btn.secondary {
   background: #fff;
   color: #2563eb;
   border: 1px solid #2563eb;
 }
+
 .btn.danger {
   background: #dc2626;
 }
+
 .btn.small {
   padding: 7px 11px;
   font-size: 13px;
 }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
+
 .card {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 20px;
 }
+
 .form-card {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -99,15 +116,18 @@ a:hover {
   font-weight: bold;
   padding: 0 10px;
 }
+
 .field {
   margin-bottom: 16px;
 }
+
 .field label {
   display: block;
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 7px;
 }
+
 .field input,
 .field select,
 .field textarea {
@@ -116,22 +136,26 @@ a:hover {
   border: 1px solid #d1d5db;
   border-radius: 5px;
 }
+
 .field textarea {
   min-height: 110px;
   resize: vertical;
 }
+
 .error {
   color: #dc2626;
   font-size: 13px;
   margin-top: 5px;
 }
+
+/* Success message */
+
 .success {
-  background: #ecfdf5;
-  color: #047857;
-  padding: 12px;
-  border: 1px solid #a7f3d0;
-  margin-bottom: 18px;
+  color: black;
+  text-align: center;
+  margin-bottom: 15px;
 }
+
 .fail {
   background: #fef2f2;
   color: #b91c1c;
@@ -139,17 +163,20 @@ a:hover {
   border: 1px solid #fecaca;
   margin-bottom: 18px;
 }
+
 .item-img {
   width: 100%;
   height: 180px;
   object-fit: cover;
   background: #e5e7eb;
 }
+
 .meta {
   font-size: 13px;
   color: #6b7280;
   line-height: 1.7;
 }
+
 .badge {
   display: inline-block;
   padding: 4px 8px;
@@ -157,15 +184,18 @@ a:hover {
   background: #e5e7eb;
   font-size: 12px;
 }
+
 .table-wrap {
   overflow-x: auto;
   background: #fff;
   border: 1px solid #e5e7eb;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .table th,
 .table td {
   padding: 12px;
@@ -173,11 +203,13 @@ a:hover {
   text-align: left;
   font-size: 14px;
 }
+
 .footer {
   text-align: center;
   padding: 30px;
   color: #6b7280;
 }
+
 .top-actions {
   display: flex;
   justify-content: space-between;
@@ -185,13 +217,16 @@ a:hover {
   gap: 12px;
   margin-bottom: 20px;
 }
+
 .stat {
   font-size: 28px;
   font-weight: 700;
 }
+
 .muted {
   color: #6b7280;
 }
+
 .profile-photo {
   width: 90px;
   height: 90px;
@@ -199,6 +234,7 @@ a:hover {
   object-fit: cover;
   background: #e5e7eb;
 }
+
 .two-col {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -298,18 +334,11 @@ a:hover {
   font-weight: normal;
 }
 
-/* Success and failure messages */
-
-.success {
-  background: #e7f6e7;
-  border: 1px solid #8bc48b;
-  padding: 10px;
-  margin-bottom: 15px;
-  text-align: center;
-}
+/* Failure message */
 
 .fail {
   background: #fde8e8;
+  color: #b91c1c;
   border: 1px solid #e09a9a;
   padding: 10px;
   margin-bottom: 15px;
@@ -317,6 +346,7 @@ a:hover {
 }
 
 /* Profile Update Style */
+
 .profile-page {
   width: 90%;
   max-width: 700px;
@@ -460,4 +490,306 @@ summary {
 
 summary::-webkit-details-marker {
   display: none;
+}
+
+/* =========================================================
+   DESKTOP + MOBILE RESPONSIVE DESIGN
+   ========================================================= */
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   NAVBAR - DESKTOP
+   ========================================================= */
+
+.menu-toggle {
+  display: none;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* =========================
+     NAVBAR
+     ========================= */
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 12px 4%;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+  }
+
+  .navlinks {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 10px;
+  }
+
+  .navlinks.show {
+    display: flex;
+  }
+
+  .navlinks a {
+    width: 100%;
+    padding: 12px 5px;
+    border-top: 1px solid #ddd;
+  }
+
+  .navlinks .btn.small {
+    width: fit-content;
+    margin-top: 8px;
+  }
+
+  /* =========================
+     CONTAINER
+     ========================= */
+
+  .container {
+    width: 94%;
+    max-width: 100%;
+    margin: 20px auto;
+  }
+
+  /* =========================
+     HERO
+     ========================= */
+
+  .hero {
+    padding: 25px 15px;
+  }
+
+  .hero h1 {
+    font-size: 27px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* =========================
+     GRID
+     ========================= */
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* =========================
+     CARDS
+     ========================= */
+
+  .card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* =========================
+     FORMS
+     ========================= */
+
+  .form-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .field {
+    width: 100%;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  /* =========================
+     LOGIN / REGISTER
+     ========================= */
+
+  .login-container,
+  .register-container {
+    width: 100%;
+    max-width: 550px;
+    margin: 20px auto;
+  }
+
+  .login-box,
+  .register-box {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* =========================
+     LOGIN / REGISTER TABLE
+     ========================= */
+
+  .login-table,
+  .register-table {
+    display: block;
+    width: 100%;
+  }
+
+  .login-table tbody,
+  .register-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .login-table tr,
+  .register-table tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .login-table td,
+  .register-table td {
+    display: block;
+    width: 100% !important;
+    padding: 5px 0;
+    text-align: left !important;
+  }
+
+  .login-table input,
+  .register-table input {
+    width: 100% !important;
+  }
+
+  /* =========================
+     CLAIM BOX
+     ========================= */
+
+  .claim-box {
+    width: 100%;
+    max-width: 650px;
+    padding: 15px;
+  }
+
+  /* =========================
+     BUTTONS
+     ========================= */
+
+  .top-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .top-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* =========================
+     TABLE
+     ========================= */
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .items-table,
+  .table {
+    min-width: 600px;
+  }
+
+  /* =========================
+     PROFILE
+     ========================= */
+
+  .profile-page,
+  .profile-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-box {
+    padding: 15px;
+  }
+
+  /* =========================
+     DASHBOARD
+     ========================= */
+
+  .dashboard,
+  .dashboard-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* =========================
+     HEADINGS
+     ========================= */
+
+  h1 {
+    font-size: 27px;
+  }
+
+  h2 {
+    font-size: 23px;
+  }
+
+  h3 {
+    font-size: 19px;
+  }
+
+  /* =========================
+     FOOTER
+     ========================= */
+
+  .footer {
+    padding: 20px 10px;
+    font-size: 13px;
+  }
 }
