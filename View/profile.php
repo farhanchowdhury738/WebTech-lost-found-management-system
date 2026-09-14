@@ -44,8 +44,8 @@ include "header.php";
     <?php } ?>
 
 
-    // Update Name 
 
+    
     <div class="profile-box">
 
         <h3>Update Name</h3>
@@ -77,8 +77,8 @@ include "header.php";
     </div>
 
 
-    // Change Password 
 
+    
     <div class="profile-box">
 
         <h3>Change Password</h3>
