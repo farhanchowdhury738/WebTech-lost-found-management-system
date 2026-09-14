@@ -77,7 +77,6 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                         <?php
                         }
                         ?>
-
                     </select>
                 </td>
             </tr>
