@@ -10,6 +10,9 @@ if (!$item) {
     include "footer.php";
     exit();
 }
+
+
+
 ?>
 <div class="card">
     <h1><?php echo htmlspecialchars($item["title"]); ?></h1>
@@ -19,6 +22,7 @@ if (!$item) {
         <div><?php if ($item["image_path"]): ?><img class="item-img"
                     src="<?php echo htmlspecialchars($item["image_path"]); ?>"><?php endif; ?></div>
         <div>
+
             <h3>Item Details</h3>
             <p class="meta">
                 Category: <?php echo htmlspecialchars($item["category_name"]); ?><br>
@@ -29,7 +33,7 @@ if (!$item) {
             </p>
 
 
-            
+
             <h3>Description</h3>
             <p><?php echo nl2br(htmlspecialchars($item["description"])); ?></p>
 
@@ -41,6 +45,7 @@ if (!$item) {
             ): ?>
                 <a class="btn" href="claimItem.php?id=<?php echo $item["id"]; ?>">
                     Claim This Item
+                    
                 </a>
             <?php endif; ?>
         </div>
