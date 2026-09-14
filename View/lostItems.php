@@ -33,6 +33,12 @@ if ($_SESSION["isLoggedIn"] ?? false) {
 }
 ?>
 
+
+
+
+
+
+
 <fieldset>
     <legend>Search Lost Items</legend>
 
@@ -52,6 +58,8 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                         value="<?php echo htmlspecialchars($search); ?>">
                 </td>
             </tr>
+
+
 
             <tr>
                 <td>
@@ -83,8 +91,11 @@ if ($_SESSION["isLoggedIn"] ?? false) {
                 </td>
             </tr>
 
+
+
             <tr>
                 <td></td>
+
 
                 <td>
                     <input type="submit" value="Search">
@@ -94,6 +105,7 @@ if ($_SESSION["isLoggedIn"] ?? false) {
         </table>
 
     </form>
+    
 
 </fieldset>
 
