@@ -28,6 +28,8 @@ if (!$item) {
                 Contact: <?php echo htmlspecialchars($item["contact_info"]); ?>
             </p>
 
+
+            
             <h3>Description</h3>
             <p><?php echo nl2br(htmlspecialchars($item["description"])); ?></p>
 
