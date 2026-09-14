@@ -37,6 +37,7 @@ if ($claimError) {
 if ($_SESSION["isLoggedIn"] ?? false) {
 ?>
     <p>
+        <!-- If logged in, this button appears -->
         <a href="reportItem.php" class="btn">
             Report Found Item
         </a>
