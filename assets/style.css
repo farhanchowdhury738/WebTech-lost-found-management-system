@@ -57,7 +57,8 @@ a:hover {
   display: inline-block;
   border: 0;
   background: gray;
-  color: #fff;
+  /* color: #fff; */
+  color:red;
   padding: 11px 18px;
   margin: 5px 0;
   border-radius: 6px;
