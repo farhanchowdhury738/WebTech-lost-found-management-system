@@ -1,12 +1,9 @@
-
 <?php
 if (session_status() === PHP_SESSION_NONE)
     session_start();
-
 $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
 $isAdmin = ($_SESSION["role"] ?? "user") === "admin";
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -18,63 +15,32 @@ $isAdmin = ($_SESSION["role"] ?? "user") === "admin";
 </head>
 
 <body>
-
     <div class="nav">
-
         <a class="brand" href="home.php">Khoja-Khuji</a>
-
-        <!-- Mobile Menu Button -->
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-            ☰
-        </button>
-
-        <div class="navlinks" id="navlinks">
-
+        <div class="navlinks">
             <a href="home.php">Home</a>
             <a href="lostItems.php">Lost Items</a>
             <a href="foundItems.php">Found Items</a>
-
             <?php if ($isLoggedIn): ?>
-
                 <?php if ($isAdmin): ?>
                     <a href="adminDashboard.php">Dashboard</a>
                 <?php else: ?>
                     <a href="dashboard.php">Dashboard</a>
                 <?php endif; ?>
-
                 <a href="reportItem.php">Report Item</a>
                 <a href="profile.php">Profile</a>
                 <a href="../Controller/logout.php">Logout</a>
-
             <?php else: ?>
-
                 <a href="login.php">Log in</a>
                 <a class="btn small" href="registration.php">Sign up</a>
-
             <?php endif; ?>
-
         </div>
     </div>
-
-
-    <!-- Mobile Menu Script -->
-    <script>
-        function toggleMenu() {
-            document.getElementById("navlinks").classList.toggle("show");
-        }
-    </script>
-
-
     <div class="container">
-
         <?php
         $successMessage = $_SESSION["successMessage"] ?? "";
-
         if ($successMessage) {
-            echo '<div class="success">' .
-                htmlspecialchars($successMessage) .
-                '</div>';
-
+            echo '<div class="success">' . htmlspecialchars($successMessage) . '</div>';
             unset($_SESSION["successMessage"]);
         }
         ?>
