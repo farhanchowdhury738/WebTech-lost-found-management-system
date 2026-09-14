@@ -40,7 +40,7 @@ $isAdmin = ($_SESSION["role"] ?? "user") === "admin";
         <?php
         $successMessage = $_SESSION["successMessage"] ?? "";
         if ($successMessage) {
-            echo '<div class="success">' . htmlspecialchars($successMessage) . '</div>';
+            echo '<p class="success-message">' . htmlspecialchars($successMessage) . '</p>';
             unset($_SESSION["successMessage"]);
         }
         ?>

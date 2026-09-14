@@ -192,12 +192,13 @@ class DatabaseConnection
         $id = (int) $id;
         return $connection->query("DELETE FROM users WHERE id=" . $id);
     }
-    //---------------
+    
 
     function updateUserStatus($connection, $id, $status)
     {
         $id = (int) $id;
         return $connection->query("UPDATE users SET status='" . $status . "' WHERE id=" . $id);
     }
+    //---------------
 }
 ?>
